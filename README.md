@@ -86,3 +86,4 @@ The Guice Module class allows you to bind classes or to give providers for other
 The Guice Servlet Config class sets up the class injector and is needed for Guice to work.
 There is a backend set up that's supported by Google App Engine called Objectify.
 More information on Objectify can be found here: https://github.com/objectify/objectify
+
