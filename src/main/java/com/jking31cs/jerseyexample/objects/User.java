@@ -1,73 +1,75 @@
+
 package com.jking31cs.jerseyexample.objects;
 
-import com.google.common.base.Objects;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import java.util.Objects;
+
 /**
- * Contains basic information about a User, specifically a name and email address.
+ * This object holds the data for a user.
  */
 @Entity
 public class User {
 
     @Id
-    private Long id;
+    private Long uid;
 
-    private String name;
-    private String email;
+    private String uname;
 
-    private User() {
-        this.id = null;
-        this.name = null;
-        this.email = null;
-    }
+    private String uemail;
 
+    @JsonCreator
     public User(
-        Long id,
-        String name,
-        String email
+            @JsonProperty("uid") Long uid,
+            @JsonProperty("uname") String uname,
+            @JsonProperty("uemail") String uemail
     ) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+        this.uid = uid;
+        this.uname = uname;
+        this.uemail = uemail;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUid() {
+        return uid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUid() {
+        this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public String getUname() {
+        return uname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUname() {
+        this.uname = uname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUemail() {
+        return uemail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUemail() {
+        this.uemail = uemail;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equal(id, user.id) &&
-            Objects.equal(name, user.name) &&
-            Objects.equal(email, user.email);
+        return Objects.equals(uid, user.uid) &&
+                Objects.equals(uname, user.uname) &&
+                Objects.equals(uemail, user.uemail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, email);
+        return Objects.hash(uid,uname,uemail);
     }
+
 }
